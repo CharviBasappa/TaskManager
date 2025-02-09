@@ -1,46 +1,74 @@
-# Getting Started with Create React App
+# 📌 Task Manager App (React 18 + TypeScript)
+A simple and efficient **Task Manager App** built using **React 18 + TypeScript**.  
+It allows users to **add, complete, delete, and prioritize tasks** with a due date.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🚀 Features
+✔ **Add, complete, and delete tasks**  
+✔ **Set task priorities (High, Medium, Low)**  
+✔ **Assign due dates for tasks**  
+✔ **Tasks are sorted by priority and earliest due date**  
+✔ **Data persists even after refresh (localStorage)**  
+✔ **Responsive design for all devices**  
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔧 Installation & Setup
+Follow these steps to set up and run the project locally:
 
-### `npm start`
+### **1️⃣ Clone the Repository**
+```sh
+git clone https://github.com/CharviBasappa/TaskManager.git
+cd task-manager
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### **2️⃣ Install Dependencies**
+```sh
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### **3️⃣ Start the Development Server**
+```sh
+npm start
+```
 
-### `npm test`
+## 🛠 Tech Stack
+React 18 ⚛️ (Frontend Framework)
+TypeScript 🦕 (For type safety)
+CSS 🎨 (For styling)
+localStorage 💾 (For task persistence)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📌 Folder Structure
+task-manager/              # Root project folder
+│── node_modules/          # Installed npm packages
+│── public/                # Public assets (index.html, favicons, etc.)
+│── src/                   # Main application source code
+│   │── App.tsx            # Main React component
+│   │── index.tsx          # Main entry point for React
+│   │── styles.css         # Main custom styles for Task Manager
+│   │── types.ts           # TypeScript types for tasks
+│── .gitignore             # Git ignored files (node_modules, build, etc.)
+│── package-lock.json      # Dependency lock file
+│── package.json           # Project metadata and dependencies
+│── README.md              # Project documentation
 
-### `npm run build`
+## 🎯 How to Use
+1️⃣ Enter a new task in the input field
+2️⃣ Choose a priority & due date
+3️⃣ Click "Add Task" to save it
+4️⃣ Click ✅ to mark a task as completed
+5️⃣ Click 🗑️ to delete a task
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🎨 UI Preview
+Here’s how the Task Manager App looks:
+![Task Manager Preview](https://github.com/CharviBasappa/TaskManager/blob/main/task-manager-preview.png?raw=true)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🤝 Contributing
+Contributions are welcome! If you want to improve this project:
+1. Fork this repository
+2. Create a new branch (feature-new-improvement)
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ⭐ Show Some Love
+If you found this project useful, please ⭐ star the repository on GitHub! ❤️
