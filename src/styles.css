@@ -78,6 +78,12 @@ body {
   .task.completed span {
     text-decoration: line-through;
     color: gray;
+    font-weight: bold;
+  }
+
+  .task.completed {
+    background: #d4edda;
+    border-left: 5px solid green;
   }
   
   /* Buttons */
