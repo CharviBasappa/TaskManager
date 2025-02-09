@@ -1,6 +1,5 @@
 # 📌 Task Manager App (React 18 + TypeScript)
-A simple and efficient **Task Manager App** built using **React 18 + TypeScript**.  
-It allows users to **add, complete, delete, and prioritize tasks** with a due date.
+A simple and efficient **Task Manager App** built using **React 18 + TypeScript**.  It allows users to **add, complete, delete, and prioritize tasks** with a due date.
 
 ## 🚀 Features
 ✔ **Add, complete, and delete tasks**  
@@ -32,12 +31,13 @@ npm start
 ```
 
 ## 🛠 Tech Stack
-React 18 ⚛️ (Frontend Framework)
-TypeScript 🦕 (For type safety)
-CSS 🎨 (For styling)
+React 18 ⚛️ (Frontend Framework) <br>
+TypeScript 🦕 (For type safety) <br>
+CSS 🎨 (For styling) <br>
 localStorage 💾 (For task persistence)
 
 ## 📌 Folder Structure
+```plaintext
 task-manager/              # Root project folder
 │── node_modules/          # Installed npm packages
 │── public/                # Public assets (index.html, favicons, etc.)
@@ -50,17 +50,19 @@ task-manager/              # Root project folder
 │── package-lock.json      # Dependency lock file
 │── package.json           # Project metadata and dependencies
 │── README.md              # Project documentation
+```
 
 ## 🎯 How to Use
-1️⃣ Enter a new task in the input field
-2️⃣ Choose a priority & due date
-3️⃣ Click "Add Task" to save it
-4️⃣ Click ✅ to mark a task as completed
-5️⃣ Click 🗑️ to delete a task
+1️⃣ Enter a new task in the input field <br>
+2️⃣ Choose a priority & due date <br>
+3️⃣ Click "Add Task" to save it <br>
+4️⃣ Click ✅ to mark a task as completed <br>
+5️⃣ Click 🗑️ to delete a task <br>
 
 ## 🎨 UI Preview
 Here’s how the Task Manager App looks:
-![Task Manager Preview](https://github.com/CharviBasappa/TaskManager/blob/main/task-manager-preview.png?raw=true)
+
+<img src = "https://github.com/CharviBasappa/TaskManager/blob/main/task-manager-preview.png?raw=true" width="400">
 
 ## 🤝 Contributing
 Contributions are welcome! If you want to improve this project:
