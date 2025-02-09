@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Task } from "./types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -8,25 +8,48 @@ const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [taskTitle, setTaskTitle] = useState("");
 
+  // ✅ Load tasks from localStorage when the app starts
+  useEffect(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+      try {
+        setTasks(JSON.parse(savedTasks));
+      } catch (error) {
+        console.error("Error parsing localStorage tasks:", error);
+      }
+    }
+  }, []);
+
+  // ✅ Save tasks to localStorage whenever they change
+  useEffect(() => {
+    if (tasks.length > 0) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }, [tasks]);
+
   const addTask = () => {
     if (!taskTitle.trim()) return;
-    setTasks([
-      ...tasks,
-      { id: Date.now(), title: taskTitle, completed: false },
-    ]);
+
+    const newTask: Task = {
+      id: Date.now(),
+      title: taskTitle,
+      // completed: false,
+    };
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+
     setTaskTitle("");
   };
 
   const toggleTask = (id: number) => {
-    setTasks(
-      tasks.map((task) =>
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   };
 
   const removeTask = (id: number) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
 
   return (
