@@ -17,7 +17,12 @@ const App: React.FC = () => {
     const savedTasks = localStorage.getItem("tasks");
     if (savedTasks) {
       try {
-        setTasks(JSON.parse(savedTasks));
+        setTasks(
+          JSON.parse(savedTasks).sort(
+            (a, b) =>
+              new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+          )
+        );
       } catch (error) {
         console.error("Error parsing localStorage tasks:", error);
       }
@@ -40,11 +45,15 @@ const App: React.FC = () => {
       id: Date.now(),
       title: taskTitle,
       completed: false,
-      dueDate: taskDueDate,
+      dueDate: taskDueDate || "9999-12-31",
       priority: taskPriority,
     };
 
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+    setTasks((prevTasks) =>
+      [...prevTasks, newTask].sort(
+        (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+      )
+    );
     setTaskTitle("");
     setTaskDueDate("");
     setTaskPriority("Medium"); // Reset priority
@@ -52,9 +61,14 @@ const App: React.FC = () => {
 
   const toggleTask = (id: number) => {
     setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
+      prevTasks
+        .map((task) =>
+          task.id === id ? { ...task, completed: !task.completed } : task
+        )
+        .sort(
+          (a, b) =>
+            new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+        )
     );
   };
 
