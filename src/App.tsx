@@ -18,10 +18,15 @@ const App: React.FC = () => {
     if (savedTasks) {
       try {
         setTasks(
-          JSON.parse(savedTasks).sort(
-            (a, b) =>
+          JSON.parse(savedTasks).sort((a, b) => {
+            const priorityOrder = { High: 1, Medium: 2, Low: 3 };
+            if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
+              return priorityOrder[a.priority] - priorityOrder[b.priority];
+            }
+            return (
               new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-          )
+            );
+          })
         );
       } catch (error) {
         console.error("Error parsing localStorage tasks:", error);
@@ -50,9 +55,15 @@ const App: React.FC = () => {
     };
 
     setTasks((prevTasks) =>
-      [...prevTasks, newTask].sort(
-        (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-      )
+      [...prevTasks, newTask].sort((a, b) => {
+        // Priority Sorting: High > Medium > Low
+        const priorityOrder = { High: 1, Medium: 2, Low: 3 };
+        if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
+          return priorityOrder[a.priority] - priorityOrder[b.priority];
+        }
+        // If same priority, sort by due date
+        return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+      })
     );
     setTaskTitle("");
     setTaskDueDate("");
@@ -65,10 +76,13 @@ const App: React.FC = () => {
         .map((task) =>
           task.id === id ? { ...task, completed: !task.completed } : task
         )
-        .sort(
-          (a, b) =>
-            new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-        )
+        .sort((a, b) => {
+          const priorityOrder = { High: 1, Medium: 2, Low: 3 };
+          if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
+            return priorityOrder[a.priority] - priorityOrder[b.priority];
+          }
+          return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+        })
     );
   };
 
