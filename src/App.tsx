@@ -7,6 +7,10 @@ import "./styles.css";
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [taskTitle, setTaskTitle] = useState("");
+  const [taskDueDate, setTaskDueDate] = useState("");
+  const [taskPriority, setTaskPriority] = useState<"High" | "Medium" | "Low">(
+    "Medium"
+  );
 
   // ✅ Load tasks from localStorage when the app starts
   useEffect(() => {
@@ -24,6 +28,8 @@ const App: React.FC = () => {
   useEffect(() => {
     if (tasks.length > 0) {
       localStorage.setItem("tasks", JSON.stringify(tasks));
+    } else {
+      localStorage.removeItem("tasks"); // Remove when empty
     }
   }, [tasks]);
 
@@ -33,11 +39,15 @@ const App: React.FC = () => {
     const newTask: Task = {
       id: Date.now(),
       title: taskTitle,
-      // completed: false,
+      completed: false,
+      dueDate: taskDueDate,
+      priority: taskPriority,
     };
-    setTasks((prevTasks) => [...prevTasks, newTask]);
 
+    setTasks((prevTasks) => [...prevTasks, newTask]);
     setTaskTitle("");
+    setTaskDueDate("");
+    setTaskPriority("Medium"); // Reset priority
   };
 
   const toggleTask = (id: number) => {
@@ -62,8 +72,24 @@ const App: React.FC = () => {
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
         />
+        <input
+          type="date"
+          value={taskDueDate}
+          onChange={(e) => setTaskDueDate(e.target.value)}
+        />
+        <select
+          value={taskPriority}
+          onChange={(e) =>
+            setTaskPriority(e.target.value as "High" | "Medium" | "Low")
+          }
+        >
+          <option value="High">🔥 High</option>
+          <option value="Medium">⚡ Medium</option>
+          <option value="Low">✅ Low</option>
+        </select>
         <button onClick={addTask}>Add Task</button>
       </div>
+
       <ul className="task-list">
         {tasks.length === 0 ? (
           <p className="no-tasks">No tasks yet! 🎉</p>
@@ -71,9 +97,19 @@ const App: React.FC = () => {
           tasks.map((task) => (
             <li
               key={task.id}
-              className={`task ${task.completed ? "completed" : ""}`}
+              className={`task ${
+                task.completed ? "completed" : ""
+              } ${task.priority.toLowerCase()}`}
             >
-              <span onClick={() => toggleTask(task.id)}>{task.title}</span>
+              <div>
+                <span onClick={() => toggleTask(task.id)}>{task.title}</span>
+                <p className="task-info">
+                  📅 {task.dueDate ? task.dueDate : "No Due Date"}
+                </p>
+                <p className={`priority ${task.priority.toLowerCase()}`}>
+                  🔥 {task.priority} Priority
+                </p>
+              </div>
               <div>
                 <button
                   className="complete-btn"
